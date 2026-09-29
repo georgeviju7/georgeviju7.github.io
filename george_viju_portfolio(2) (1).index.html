@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>George Viju | Creative Developer</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg:#070b16;
+  --bg2:#0d1224;
+  --card:rgba(17,24,45,.72);
+  --card2:rgba(24,32,59,.75);
+  --text:#f7f8ff;
+  --muted:#aab3ca;
+  --line:rgba(255,255,255,.10);
+  --purple:#8b5cf6;
+  --cyan:#22d3ee;
+  --pink:#ec4899;
+  --green:#34d399;
+  --shadow:0 25px 80px rgba(0,0,0,.35);
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:Inter,Arial,sans-serif;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 10% 10%,rgba(139,92,246,.18),transparent 30%),
+    radial-gradient(circle at 90% 20%,rgba(34,211,238,.12),transparent 28%),
+    radial-gradient(circle at 70% 90%,rgba(236,72,153,.10),transparent 30%),
+    var(--bg);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.16;
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+  background-size:50px 50px;
+  mask-image:linear-gradient(to bottom,black,transparent 80%);
+}
+a{text-decoration:none;color:inherit}
+.container{width:min(1120px,90%);margin:auto}
+
+/* NAVBAR */
+header{
+  position:fixed;
+  top:18px;
+  left:0;
+  right:0;
+  z-index:1000;
+}
+nav{
+  width:min(1120px,92%);
+  margin:auto;
+  padding:14px 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:rgba(7,11,22,.72);
+  border:1px solid var(--line);
+  border-radius:18px;
+  backdrop-filter:blur(18px);
+  box-shadow:0 12px 45px rgba(0,0,0,.2);
+}
+.logo{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:21px;
+  font-weight:700;
+}
+.logo span{
+  color:var(--cyan);
+}
+.nav-links{
+  display:flex;
+  list-style:none;
+  gap:7px;
+}
+.nav-links a{
+  display:block;
+  padding:8px 13px;
+  border-radius:10px;
+  color:var(--muted);
+  font-size:14px;
+  transition:.25s;
+}
+.nav-links a:hover,.nav-links a.active{
+  color:#fff;
+  background:rgba(139,92,246,.15);
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;
+  padding-top:140px;
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  align-items:center;
+  gap:70px;
+}
+.badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 13px;
+  border:1px solid rgba(34,211,238,.25);
+  background:rgba(34,211,238,.08);
+  border-radius:100px;
+  color:#9cecf7;
+  font-size:13px;
+  font-weight:600;
+  margin-bottom:22px;
+}
+.status-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--green);
+  box-shadow:0 0 14px var(--green);
+}
+.hero h1{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:clamp(48px,7vw,82px);
+  line-height:.98;
+  letter-spacing:-3px;
+}
+.gradient-text{
+  background:linear-gradient(100deg,#fff 10%,#a78bfa 48%,#22d3ee 90%);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.hero h2{
+  margin-top:22px;
+  color:#c8cee0;
+  font-size:22px;
+  font-weight:500;
+}
+.hero p{
+  max-width:570px;
+  margin-top:20px;
+  color:var(--muted);
+  font-size:16px;
+}
+.buttons{
+  display:flex;
+  gap:13px;
+  margin-top:30px;
+  flex-wrap:wrap;
+}
+.btn{
+  padding:12px 19px;
+  border-radius:12px;
+  font-weight:600;
+  font-size:14px;
+  border:1px solid var(--line);
+  transition:.25s;
+}
+.btn.primary{
+  color:white;
+  border:0;
+  background:linear-gradient(100deg,var(--purple),#6d5dfc);
+  box-shadow:0 10px 30px rgba(139,92,246,.28);
+}
+.btn.secondary{
+  background:rgba(255,255,255,.035);
+}
+.btn:hover{
+  transform:translateY(-3px);
+}
+
+/* HERO VISUAL */
+.visual{
+  position:relative;
+  height:470px;
+  display:grid;
+  place-items:center;
+}
+.glow{
+  position:absolute;
+  width:300px;height:300px;
+  background:linear-gradient(135deg,var(--purple),var(--cyan));
+  filter:blur(90px);
+  opacity:.23;
+}
+.code-window{
+  position:relative;
+  width:min(500px,100%);
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(11,16,32,.83);
+  border-radius:22px;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+  transform:rotate(2deg);
+}
+.window-top{
+  height:48px;
+  padding:0 18px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  border-bottom:1px solid var(--line);
+}
+.circle{width:10px;height:10px;border-radius:50%}
+.c1{background:#fb7185}.c2{background:#fbbf24}.c3{background:#34d399}
+.window-title{
+  margin-left:10px;
+  color:#7f8aa7;
+  font-size:12px;
+}
+.code{
+  padding:30px 32px 38px;
+  font-family:Consolas,monospace;
+  font-size:15px;
+  line-height:2;
+  color:#cbd5e1;
+}
+.purple{color:#c084fc}.cyan{color:#67e8f9}.pink{color:#f9a8d4}.green{color:#86efac}
+.float-card{
+  position:absolute;
+  padding:12px 15px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:rgba(17,24,45,.85);
+  backdrop-filter:blur(12px);
+  box-shadow:var(--shadow);
+  font-size:13px;
+}
+.float-card strong{display:block;font-size:15px}
+.fc1{top:55px;right:-5px}
+.fc2{bottom:50px;left:0}
+
+/* SECTIONS */
+section{padding:105px 0;position:relative}
+.section-head{
+  margin-bottom:45px;
+}
+.kicker{
+  color:#8b8fa7;
+  text-transform:uppercase;
+  letter-spacing:3px;
+  font-size:11px;
+  font-weight:700;
+  margin-bottom:9px;
+}
+.section-title{
+  font-family:"Space Grotesk",sans-serif;
+  font-size:clamp(30px,4vw,45px);
+  letter-spacing:-1px;
+}
+.section-title span{color:var(--purple)}
+.section-desc{
+  color:var(--muted);
+  max-width:650px;
+  margin-top:10px;
+}
+
+/* ABOUT */
+.about-grid{
+  display:grid;
+  grid-template-columns:.75fr 1.25fr;
+  gap:30px;
+}
+.profile-card,.about-card{
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:var(--card);
+  box-shadow:var(--shadow);
+}
+.profile-card{
+  min-height:330px;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  position:relative;
+}
+.profile-orb{
+  width:150px;height:150px;border-radius:50%;
+  background:linear-gradient(135deg,var(--purple),var(--cyan));
+  filter:blur(0);
+  display:grid;
+  place-items:center;
+  font-family:"Space Grotesk";
+  font-size:54px;
+  font-weight:700;
+  box-shadow:0 0 80px rgba(139,92,246,.4);
+}
+.profile-card:after{
+  content:"";
+  position:absolute;
+  width:260px;height:260px;
+  border:1px solid rgba(139,92,246,.22);
+  border-radius:50%;
+}
+.about-card{padding:35px}
+.about-card h3{font-size:25px;margin-bottom:14px}
+.about-card p{color:var(--muted);font-size:16px;margin-bottom:18px}
+.tags{display:flex;flex-wrap:wrap;gap:9px}
+.tag{
+  border:1px solid var(--line);
+  padding:7px 11px;
+  border-radius:9px;
+  color:#cbd5e1;
+  font-size:12px;
+  background:rgba(255,255,255,.025);
+}
+
+/* SKILLS */
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.skill-card{
+  padding:30px;
+  border:1px solid var(--line);
+  border-radius:22px;
+  background:linear-gradient(145deg,rgba(20,27,50,.85),rgba(10,15,30,.75));
+  transition:.3s;
+  position:relative;
+  overflow:hidden;
+}
+.skill-card:before{
+  content:"";
+  position:absolute;
+  top:0;left:0;
+  width:100%;height:3px;
+  background:linear-gradient(90deg,var(--purple),var(--cyan));
+  transform:scaleX(0);
+  transform-origin:left;
+  transition:.3s;
+}
+.skill-card:hover{
+  transform:translateY(-7px);
+  border-color:rgba(139,92,246,.35);
+}
+.skill-card:hover:before{transform:scaleX(1)}
+.skill-icon{
+  width:58px;height:58px;
+  display:grid;place-items:center;
+  border-radius:16px;
+  background:rgba(139,92,246,.13);
+  color:#c4b5fd;
+  font-size:27px;
+  font-weight:800;
+  margin-bottom:22px;
+}
+.skill-card:nth-child(2) .skill-icon{
+  background:rgba(34,211,238,.11);
+  color:#67e8f9;
+}
+.skill-card:nth-child(3) .skill-icon{
+  background:rgba(236,72,153,.11);
+  color:#f9a8d4;
+}
+.skill-card h3{font-size:20px;margin-bottom:7px}
+.skill-card p{color:var(--muted);font-size:14px}
+
+/* JOURNEY */
+.journey{
+  border:1px solid var(--line);
+  border-radius:24px;
+  background:var(--card);
+  padding:45px 35px;
+}
+.timeline{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  position:relative;
+}
+.timeline:before{
+  content:"";
+  position:absolute;
+  top:13px;
+  left:9%;
+  right:9%;
+  height:2px;
+  background:linear-gradient(90deg,var(--purple),var(--cyan));
+  opacity:.55;
+}
+.timeline-item{
+  position:relative;
+  text-align:center;
+  z-index:1;
+}
+.dot{
+  width:28px;height:28px;
+  border-radius:50%;
+  margin:auto auto 20px;
+  background:var(--bg2);
+  border:2px solid #9b8af8;
+  box-shadow:0 0 0 6px rgba(139,92,246,.08);
+}
+.timeline-item:nth-child(2) .dot{border-color:#67e8f9}
+.timeline-item:nth-child(3) .dot{border-color:#f9a8d4}
+.timeline-item h3{font-size:16px}
+.timeline-item p{color:var(--muted);font-size:14px;margin-top:5px}
+.learning-note{
+  text-align:center;
+  color:#8993ad;
+  margin-top:35px;
+  font-size:14px;
+}
+
+/* PROJECTS */
+.project{
+  min-height:210px;
+  border:1px dashed rgba(139,92,246,.45);
+  border-radius:24px;
+  background:
+    linear-gradient(135deg,rgba(139,92,246,.08),rgba(34,211,238,.04)),
+    var(--card);
+  display:flex;
+  align-items:center;
+  gap:30px;
+  padding:40px;
+  position:relative;
+  overflow:hidden;
+}
+.project-icon{
+  width:78px;height:78px;
+  border-radius:20px;
+  display:grid;place-items:center;
+  font-size:35px;
+  background:linear-gradient(135deg,rgba(139,92,246,.2),rgba(34,211,238,.1));
+}
+.project h3{font-size:22px}
+.project p{color:var(--muted);margin-top:5px}
+.project .coming{
+  display:inline-block;
+  margin-top:13px;
+  color:#a78bfa;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+/* GOALS */
+.goals-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+.goal{
+  padding:28px;
+  border:1px solid var(--line);
+  border-radius:20px;
+  background:var(--card);
+}
+.goal-icon{font-size:30px;margin-bottom:20px}
+.goal h3{font-size:18px}
+.goal p{color:var(--muted);font-size:14px;margin-top:5px}
+
+/* CONTACT */
+.contact-box{
+  border:1px solid var(--line);
+  border-radius:26px;
+  padding:38px;
+  background:
+    radial-gradient(circle at 80% 0%,rgba(34,211,238,.12),transparent 30%),
+    radial-gradient(circle at 0% 100%,rgba(139,92,246,.14),transparent 35%),
+    var(--card);
+}
+.contact-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+.contact-item{
+  min-height:95px;
+  padding:16px;
+  border:1px solid var(--line);
+  border-radius:15px;
+  background:rgba(255,255,255,.025);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:6px;
+  transition:.25s;
+}
+.contact-item:hover{
+  transform:translateY(-4px);
+  border-color:rgba(34,211,238,.35);
+}
+.contact-icon{font-size:20px;color:#8b9bff}
+.contact-label{
+  color:#737e98;
+  font-size:11px;
+  text-transform:uppercase;
+  letter-spacing:1px;
+}
+.contact-value{
+  font-size:13px;
+  color:#dbe2f2;
+  word-break:break-word;
+}
+
+footer{
+  text-align:center;
+  color:#6f7890;
+  padding:30px 0;
+  font-size:13px;
+}
+
+/* RESPONSIVE */
+@media(max-width:850px){
+  header{top:8px}
+  nav{flex-direction:column;gap:7px}
+  .nav-links{overflow-x:auto;max-width:100%;justify-content:center}
+  .nav-links a{padding:7px 9px;font-size:12px}
+  .hero{
+    grid-template-columns:1fr;
+    padding-top:155px;
+    text-align:center;
+    gap:30px;
+  }
+  .hero p{margin-left:auto;margin-right:auto}
+  .buttons{justify-content:center}
+  .visual{height:390px}
+  .about-grid{grid-template-columns:1fr}
+  .skills-grid,.goals-grid{grid-template-columns:1fr}
+  .timeline{grid-template-columns:1fr;gap:35px}
+  .timeline:before{top:0;bottom:0;left:50%;right:auto;width:2px;height:auto}
+  .contact-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:520px){
+  .hero h1{letter-spacing:-2px}
+  .code-window{transform:none}
+  .code{padding:22px;font-size:12px}
+  .float-card{display:none}
+  section{padding:75px 0}
+  .project{flex-direction:column;text-align:center;padding:30px 20px}
+  .contact-grid{grid-template-columns:1fr}
+  .journey{padding:30px 20px}
+}
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+  <a class="logo" href="#home">George<span>.</span></a>
+  <ul class="nav-links">
+    <li><a class="active" href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#learning">Journey</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+</header>
+
+<main>
+
+<section id="home">
+<div class="container hero">
+
+  <div>
+    <div class="badge"><span class="status-dot"></span> Currently learning & building</div>
+
+    <h1>Hello, I'm<br><span class="gradient-text">George Viju.</span></h1>
+
+    <h2>Student • Programmer • Future Web Developer</h2>
+
+    <p>
+      I enjoy turning ideas into digital experiences while learning
+      programming, web development and new technologies one step at a time.
+    </p>
+
+    <div class="buttons">
+      <a class="btn primary" href="#projects">View My Work →</a>
+      <a class="btn secondary" href="#contact">Let's Connect</a>
+    </div>
+  </div>
+
+  <div class="visual">
+    <div class="glow"></div>
+
+    <div class="code-window">
+      <div class="window-top">
+        <span class="circle c1"></span>
+        <span class="circle c2"></span>
+        <span class="circle c3"></span>
+        <span class="window-title">portfolio.js</span>
+      </div>
+
+      <div class="code">
+        <div><span class="purple">const</span> developer = {</div>
+        <div>&nbsp;&nbsp;name: <span class="green">"George Viju"</span>,</div>
+        <div>&nbsp;&nbsp;role: <span class="green">"Student Developer"</span>,</div>
+        <div>&nbsp;&nbsp;skills: [</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cyan">"C"</span>, <span class="cyan">"Python"</span>,</div>
+        <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="cyan">"HTML"</span>, <span class="cyan">"CSS"</span></div>
+        <div>&nbsp;&nbsp;],</div>
+        <div>&nbsp;&nbsp;learning: <span class="pink">true</span></div>
+        <div>};</div>
+      </div>
+    </div>
+
+    <div class="float-card fc1">
+      <strong>01</strong>
+      Learning every day
+    </div>
+
+    <div class="float-card fc2">
+      <strong>100%</strong>
+      Curiosity
+    </div>
+  </div>
+
+</div>
+</section>
+
+<section id="about">
+<div class="container">
+  <div class="section-head">
+    <div class="kicker">Who I am</div>
+    <h2 class="section-title">A little <span>about me.</span></h2>
+    <p class="section-desc">A student who is curious about technology and enjoys building things from scratch.</p>
+  </div>
+
+  <div class="about-grid">
+    <div class="profile-card">
+      <div class="profile-orb">GV</div>
+    </div>
+
+    <div class="about-card">
+      <h3>Learning. Building. Improving.</h3>
+      <p>
+        I am a student with a strong interest in programming and web development.
+        I enjoy problem solving, experimenting with code and creating useful
+        digital experiences. My goal is to keep improving my skills and turn
+        what I learn into real projects.
+      </p>
+
+      <div class="tags">
+        <span class="tag">Problem Solving</span>
+        <span class="tag">Programming</span>
+        <span class="tag">Web Development</span>
+        <span class="tag">Continuous Learning</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="skills">
+<div class="container">
+  <div class="section-head">
+    <div class="kicker">What I know</div>
+    <h2 class="section-title">My <span>skills.</span></h2>
+    <p class="section-desc">The technologies and fundamentals I am currently learning and practicing.</p>
+  </div>
+
+  <div class="skills-grid">
+    <article class="skill-card">
+      <div class="skill-icon">C</div>
+      <h3>C Programming</h3>
+      <p>Learning programming fundamentals, logic, conditions, loops and problem solving.</p>
+    </article>
+
+    <article class="skill-card">
+      <div class="skill-icon">Py</div>
+      <h3>Python</h3>
+      <p>Exploring Python syntax, programming concepts and building small programs.</p>
+    </article>
+
+    <article class="skill-card">
+      <div class="skill-icon">&lt;/&gt;</div>
+      <h3>Web Development</h3>
+      <p>Learning HTML, CSS and JavaScript to create modern interactive websites.</p>
+    </article>
+  </div>
+</div>
+</section>
+
+<section id="learning">
+<div class="container">
+  <div class="section-head">
+    <div class="kicker">My progress</div>
+    <h2 class="section-title">Learning <span>journey.</span></h2>
+  </div>
+
+  <div class="journey">
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="dot"></div>
+        <h3>Started Learning</h3>
+        <p>C Language</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="dot"></div>
+        <h3>Currently Learning</h3>
+        <p>Python</p>
+      </div>
+
+      <div class="timeline-item">
+        <div class="dot"></div>
+        <h3>Next Direction</h3>
+        <p>Web Development</p>
+      </div>
+
+    </div>
+
+    <p class="learning-note">
+      Consistency beats perfection — one concept, one project and one improvement at a time.
+    </p>
+  </div>
+</div>
+</section>
+
+<section id="projects">
+<div class="container">
+  <div class="section-head">
+    <div class="kicker">What I'm building</div>
+    <h2 class="section-title">Featured <span>projects.</span></h2>
+  </div>
+
+  <div class="project">
+    <div class="project-icon">✦</div>
+    <div>
+      <h3>Projects are coming soon.</h3>
+      <p>
+        I am currently building my skills. This section will soon showcase
+        real projects, experiments and things I create.
+      </p>
+      <span class="coming">Building in progress</span>
+    </div>
+  </div>
+</div>
+</section>
+
+<section id="goals">
+<div class="container">
+  <div class="section-head">
+    <div class="kicker">Where I'm heading</div>
+    <h2 class="section-title">My <span>goals.</span></h2>
+  </div>
+
+  <div class="goals-grid">
+
+    <div class="goal">
+      <div class="goal-icon">🎯</div>
+      <h3>Improve My Skills</h3>
+      <p>Strengthen programming fundamentals and become better at solving problems.</p>
+    </div>
+
+    <div class="goal">
+      <div class="goal-icon">⚡</div>
+      <h3>Learn New Technologies</h3>
+      <p>Explore modern tools, frameworks and technologies used by developers.</p>
+    </div>
+
+    <div class="goal">
+      <div class="goal-icon">🚀</div>
+      <h3>Build Real Projects</h3>
+      <p>Turn ideas into useful websites and applications that I can showcase.</p>
+    </div>
+
+  </div>
+</div>
+</section>
+
+<section id="contact">
+<div class="container">
+  <div class="section-head">
+    <div class="kicker">Get in touch</div>
+    <h2 class="section-title">Let's <span>connect.</span></h2>
+    <p class="section-desc">Have an idea, project or simply want to say hello?</p>
+  </div>
+
+  <div class="contact-box">
+    <div class="contact-grid">
+
+      <a class="contact-item" href="mailto:georgeviju24@gmail.com">
+        <span class="contact-icon">✉</span>
+        <span class="contact-label">Email</span>
+        <span class="contact-value">georgeviju24@gmail.com</span>
+      </a>
+
+      <a class="contact-item" href="tel:+911234567890">
+        <span class="contact-icon">☎</span>
+        <span class="contact-label">Phone</span>
+        <span class="contact-value">+91 12345 67890</span>
+      </a>
+
+      <div class="contact-item">
+        <span class="contact-icon">⌖</span>
+        <span class="contact-label">Location</span>
+        <span class="contact-value">Kerala, India</span>
+      </div>
+
+      <a class="contact-item" href="https://www.linkedin.com/in/georgeviju" target="_blank" rel="noopener">
+        <span class="contact-icon">in</span>
+        <span class="contact-label">LinkedIn</span>
+        <span class="contact-value">/in/georgeviju</span>
+      </a>
+
+    </div>
+  </div>
+</div>
+</section>
+
+</main>
+
+<footer>
+  © 2025 George Viju · Designed & built with curiosity.
+</footer>
+
+<script>
+const sections = document.querySelectorAll("section[id]");
+const navLinks = document.querySelectorAll(".nav-links a");
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      navLinks.forEach(link => link.classList.remove("active"));
+      const active = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+      if(active) active.classList.add("active");
+    }
+  });
+}, { rootMargin: "-35% 0px -55% 0px" });
+
+sections.forEach(section => observer.observe(section));
+</script>
+
+</body>
+</html>
